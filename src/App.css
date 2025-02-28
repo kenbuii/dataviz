@@ -24,8 +24,9 @@
 /* Menu styling */
 .viz-menu {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   margin: 20px 0;
   padding: 10px;
   background-color: #f0f0f0;
@@ -34,11 +35,11 @@
 }
 
 .menu-button {
-  padding: 10px 20px;
+  padding: 10px 15px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -53,4 +54,14 @@
   background-color: #4a90e2;
   color: white;
   border-color: #4a90e2;
+}
+
+@media (max-width: 768px) {
+  .viz-menu {
+    flex-direction: column;
+  }
+  
+  .menu-button {
+    width: 100%;
+  }
 } 

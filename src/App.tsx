@@ -3,9 +3,10 @@ import './App.css';
 import HighExplorationViz from './interactive-high-exploration-viz';
 import SocialNetworkEvolution from './social-network-evolution';
 import ThirdAnalysis from './third-analysis';
+import InteractiveSocialNetworkEvolution from './interactive-social-network-evolution';
 
 function App() {
-  const [activeViz, setActiveViz] = useState<'question1' | 'question2' | 'question3'>('question1');
+  const [activeViz, setActiveViz] = useState<'question1' | 'question2' | 'question3' | 'question4'>('question1');
 
   return (
     <div className="App">
@@ -32,6 +33,12 @@ function App() {
         >
           Question 3: Parameter Comparison
         </button>
+        <button 
+          className={`menu-button ${activeViz === 'question4' ? 'active' : ''}`}
+          onClick={() => setActiveViz('question4')}
+        >
+          Question 4: Interactive Evolution
+        </button>
       </div>
       
       <main className="App-main">
@@ -39,8 +46,10 @@ function App() {
           <HighExplorationViz />
         ) : activeViz === 'question2' ? (
           <SocialNetworkEvolution />
-        ) : (
+        ) : activeViz === 'question3' ? (
           <ThirdAnalysis />
+        ) : (
+          <InteractiveSocialNetworkEvolution />
         )}
       </main>
       
