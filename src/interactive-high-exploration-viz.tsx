@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 // Define interfaces for our data structures
 interface SimulationDataPoint {
@@ -60,7 +60,7 @@ interface SummaryDataPoint {
   description: string;
 }
 
-const SocialNetworkChart = () => {
+const HighExplorationViz = () => {
   // Process the data from the simulations
   const days = [0, 100, 200, 300, 400, 500];
   
@@ -347,13 +347,14 @@ const SocialNetworkChart = () => {
           </div>
           <div className="border p-4 rounded-lg">
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={summaryData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+              <LineChart data={summaryData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis label={{ value: 'Revenue ($)', angle: -90, position: 'insideLeft' }} />
+                <YAxis domain={[0, 7000]} label={{ value: 'Revenue ($)', angle: -90, position: 'insideLeft' }} />
                 <Tooltip formatter={(value: any) => [`$${Number(value).toFixed(2)}`, 'Revenue']} />
-                <Bar dataKey="revenue" name="Revenue ($)" fill="#8884d8" />
-              </BarChart>
+                <Legend />
+                <Line type="monotone" dataKey="revenue" name="Revenue ($)" stroke="#8884d8" strokeWidth={2} dot={{ r: 6 }} activeDot={{ r: 8 }} />
+              </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
@@ -385,4 +386,4 @@ const SocialNetworkChart = () => {
   );
 };
 
-export default SocialNetworkChart;
+export default HighExplorationViz;
