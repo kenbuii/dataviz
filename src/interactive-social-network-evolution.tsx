@@ -179,6 +179,10 @@ const SocialNetworkChart: React.FC = () => {
     <div className="flex flex-col space-y-6">
       <div className="p-4 bg-gray-100 rounded-lg">
         <h1 className="text-2xl font-bold mb-4">Social Network Polarization Analysis</h1>
+        <p className="text-sm mb-4"> 
+          This visualization shows the evolution of the social network over time for different exploration and diversity parameters. 
+          Select the simulations you want to visualize. By default, all simulations are selected. 
+          </p>
         
         <div className="mb-4">
           <h2 className="text-lg font-semibold mb-2">Select Simulations:</h2>
@@ -315,17 +319,25 @@ const SocialNetworkChart: React.FC = () => {
             <div className="border p-4 rounded-lg">
               <h3 className="font-semibold mb-2">Revenue ($)</h3>
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={summaryData.filter((_, i) => selectedSims.includes(i))}>
+                <LineChart data={summaryData.filter((_, i) => selectedSims.includes(i))}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="revenue" name="Revenue ($)">
-                    {summaryData.filter((_, i) => selectedSims.includes(i)).map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={colors[selectedSims[index]][1]} />
-                    ))}
-                  </Bar>
-                </BarChart>
+                  <YAxis domain={[0, 7000]} />
+                  <Tooltip formatter={(value: any) => [`$${Number(value).toFixed(2)}`, 'Revenue']} />
+                  <Legend />
+                  {summaryData.filter((_, i) => selectedSims.includes(i)).map((entry, index) => (
+                    <Line 
+                      key={`line-${index}`}
+                      type="monotone" 
+                      dataKey="revenue" 
+                      name={`${entry.description} Revenue`}
+                      stroke={colors[selectedSims[index]][1]}
+                      strokeWidth={2}
+                      dot={{ r: 6, fill: colors[selectedSims[index]][1] }}
+                      activeDot={{ r: 8 }}
+                    />
+                  ))}
+                </LineChart>
               </ResponsiveContainer>
             </div>
           </div>

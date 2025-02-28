@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Social Network Evolution Visualization</h1>
+        <h1>Data Visualization for CS 182W: Assignment 3</h1>
       </header>
       
       <div className="viz-menu">
