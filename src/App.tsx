@@ -54,7 +54,7 @@ function App() {
       </main>
       
       <footer className="App-footer">
-        <p>© 2023 Social Network Simulation Project</p>
+        <p>© 2023 Kenneth Bui. All rights unreserved. </p>
       </footer>
     </div>
   );
